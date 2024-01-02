@@ -2,6 +2,7 @@
 
 #include "core/application.h"
 #include "core/logger.h"
+#include "core/cmemory.h"
 #include "game_types.h"
 
 extern b8 create_game(game* out_game);
@@ -10,6 +11,8 @@ extern b8 create_game(game* out_game);
  * The main entry point
 */
 int main(void) {
+    initialize_memory();
+
     game game_inst;
     if (!create_game(&game_inst)) {
         CFATAL("Could not create game!");
@@ -32,6 +35,8 @@ int main(void) {
         CINFO("The application did not shutdown gracefully!");
         return 2;
     }
+
+    shutdown_memory();
 
     return 0;
 }

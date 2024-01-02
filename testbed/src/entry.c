@@ -1,9 +1,7 @@
 #include "game.h"
 
 #include <entry.h>
-
-// TODO: Remove this
-#include <platform/platform.h>
+#include <core/cmemory.h>
 
 // Define the func to create the game
 b8 create_game(game* out_game) {
@@ -20,7 +18,7 @@ b8 create_game(game* out_game) {
     out_game->on_resize = game_on_resize;
 
     // Create game state
-    out_game->state = platform_allocate(sizeof(game_state), FALSE);
+    out_game->state = callocate(sizeof(game_state), MEMORY_TAG_GAME);
 
     return TRUE;
 }
