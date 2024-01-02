@@ -2,7 +2,7 @@
 
 #include "defines.h"
 
-// NOTE: Comment to disable assertions
+// Disable assertions by commenting out the below line.
 #define CASSERTIONS_ENABLED
 
 #ifdef CASSERTIONS_ENABLED
@@ -13,9 +13,9 @@
 #define debugBreak() __builtin_trap()
 #endif
 
-void report_assertion_failure(const char* expression, const char* message, const char* file, i32 line);
+KAPI void report_assertion_failure(const char* expression, const char* message, const char* file, i32 line);
 
-#define CASSERT(expr)
+#define CASSERT(expr)                                                \
     {                                                                \
         if (expr) {                                                  \
         } else {                                                     \
@@ -24,7 +24,7 @@ void report_assertion_failure(const char* expression, const char* message, const
         }                                                            \
     }
 
-#define CASSERT_MESSAGE(expr, message)
+#define CASSERT_MSG(expr, message)                                        \
     {                                                                     \
         if (expr) {                                                       \
         } else {                                                          \
@@ -34,7 +34,7 @@ void report_assertion_failure(const char* expression, const char* message, const
     }
 
 #ifdef _DEBUG
-#define CASSERT_DEBUG(expr)
+#define CASSERT_DEBUG(expr)                                          \
     {                                                                \
         if (expr) {                                                  \
         } else {                                                     \
@@ -43,7 +43,7 @@ void report_assertion_failure(const char* expression, const char* message, const
         }                                                            \
     }
 #else
-#define CASSERT_DEBUG(expr)
+#define CASSERT_DEBUG(expr)  // Does nothing at all
 #endif
 
 #else

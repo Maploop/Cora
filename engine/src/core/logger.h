@@ -26,7 +26,7 @@ void shutdown_logging();
 
 KAPI void log_output(log_level level, const char* message, ...);
 
-#define KFATAL(message, ...) log_output(LOG_LEVEL_FATAL, message, ##__VA_ARGS__);
+#define CFATAL(message, ...) log_output(LOG_LEVEL_FATAL, message, ##__VA_ARGS__);
 
 #ifndef CERROR
 #define CERROR(message, ...) log_output(LOG_LEVEL_ERROR, message, ##__VA_ARGS__);
