@@ -3,10 +3,14 @@
 #include "core/logger.h"
 #include "core/input.h"
 
+#include "containers/darray.h"
+
+#include "renderer/vulkan/vulkan_platform.h"
+
 #if KPLATFORM_WINDOWS
 
 #include <windows.h>
-#include <windowsx.h>  // param input extraction
+#include <windowsx.h> 
 #include <stdlib.h>
 
 typedef struct internal_state {
@@ -154,7 +158,7 @@ void *platform_set_memory(void *dest, i32 value, u64 size) {
 void platform_console_write(const char *message, u8 colour) {
     HANDLE console_handle = GetStdHandle(STD_OUTPUT_HANDLE);
     // FATAL,ERROR,WARN,INFO,DEBUG,TRACE
-    static u8 levels[6] = {64, 4, 6, 8, 8, 8};
+    static u8 levels[6] = {64, 4, 6, 2, 1, 8};
     SetConsoleTextAttribute(console_handle, levels[colour]);
     OutputDebugStringA(message);
     u64 length = strlen(message);
@@ -181,6 +185,10 @@ f64 platform_get_absolute_time() {
 
 void platform_sleep(u64 ms) {
     Sleep(ms);
+}
+
+void platform_get_required_extension_names(const char*** names_darray) {
+    darray_push(*names_darray, &"VK_KHR_win32_surface");
 }
 
 LRESULT CALLBACK win32_process_message(HWND hwnd, u32 msg, WPARAM w_param, LPARAM l_param) {

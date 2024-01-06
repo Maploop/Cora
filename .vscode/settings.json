@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "cmemory.h": "c",
+        "darray.h": "c",
+        "asserts.h": "c"
+    },
+    "editor.cursorStyle": "block",
+}

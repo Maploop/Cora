@@ -2,7 +2,7 @@
 #include <core/logger.h>
 
 b8 game_initialize(game* game_inst) {
-    CDEBUG("game_init called");
+    CDEBUG("game_initialize was called");
     return TRUE;
 }
 
