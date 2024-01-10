@@ -1,5 +1,7 @@
 # Cora Engine
-[Version: Gamma TB-A](https://coraengine.net/)
+[![VERSION](https://img.shields.io/badge/Version-Gamma_TB_1-yellow.svg)]()
+[![DOCS](https://img.shields.io/badge/Documentation-N/A-red.svg)]()
+[![WEBSITE](https://img.shields.io/badge/Website-coraengine.github.io-green.svg)](https://coraengine.github.io)
 
 | Table of Contents  |
 | ------------- | 
