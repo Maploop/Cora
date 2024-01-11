@@ -2,6 +2,7 @@
 
 #include "vulkan_types.inl"
 #include "vulkan_platform.h"
+#include "vulkan_device.h"
 
 #include "core/cstring.h"
 #include "core/logger.h"
@@ -114,11 +115,18 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
     VK_CHECK(func(context.instance, &debug_create_info, context.allocator, &context.debug_messenger));
     CDEBUG("Vulkan debugger created.");
 #endif
+    CDEBUG("Creating vulkan surface...");
+    if (!platform_create_vulkan_surface(plat_state, &context)) {
+        CERROR("Failed to create platform surface!");
+        return FALSE;
+    }
+    CINFO("Vulkan surface successfully created!");
 
-    create_info.enabledLayerCount = required_validation_layer_count;
-    create_info.ppEnabledLayerNames = required_validation_layer_names;
-
-    VK_CHECK(vkCreateInstance(&create_info, context.allocator, &context.instance));
+    // Device creation
+    if (!vulkan_device_create(&context)) {
+        CERROR("Failed to create vulkan device cannot continue with the initialization!");
+        return FALSE;
+    }
 
     CINFO("Vulkan renderer initialized successfully.");
     return TRUE;
