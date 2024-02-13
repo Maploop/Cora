@@ -7,8 +7,9 @@
 
 #include "renderer/vulkan/vulkan_platform.h"
 // For the surface creation
+// Instead of including vulkan_win32 we have to define use plantform win32
+#define VK_USE_PLATFORM_WIN32_KHR TRUE;
 #include <vulkan/vulkan.h>
-#include <vulkan/vulkan_win32.h>
 #include "renderer/vulkan/vulkan_types.inl"
 // ----------
 
@@ -208,7 +209,7 @@ b8 platform_create_vulkan_surface(struct platform_state* plat_state, struct vulk
 
     VkResult result = vkCreateWin32SurfaceKHR(context->instance, &create_info, context->allocator, &state->surface);
     if (result != VK_SUCCESS) {
-        KFATAL("Vulkan surface creation failed.");
+        CFATAL("Vulkan surface creation failed.");
         return FALSE;
     }
 
