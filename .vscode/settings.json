@@ -7,7 +7,7 @@
     "editor.fontFamily": "Liberation Mono",
     "editor.fontSize": 15,
     "editor.fontWeight": "1",
-    "workbench.editor.showTabs": "single",
+    "workbench.editor.showTabs": "multiple",
     "workbench.colorCustomizations": {
         "editorCursor.foreground": "#ffffff",
         "editor.lineHighlightBackground": "#2e1638"
@@ -21,7 +21,7 @@
     "C_Cpp.vcFormat.space.pointerReferenceAlignment": "left",
     "C_Cpp.clang_format_sortIncludes": false,
     "C_Cpp.vcFormat.indent.namespaceContents": true,
-    "editor.cursorStyle": "line-thin",
+    "editor.cursorStyle": "block",
     "window.zoomLevel": 0,
     "editor.tabCompletion": "on",
     "todohighlight.isEnable": true,
@@ -66,6 +66,11 @@
         "darray.h": "c",
         "input.h": "c",
         "logger.h": "c",
-        "vulkan_types.inl": "c"
+        "vulkan_types.inl": "c",
+        "stdio.h": "c",
+        "string.h": "c",
+        "cmemory.h": "c",
+        "stat.h": "c",
+        "filesystem.h": "c"
     }
 }

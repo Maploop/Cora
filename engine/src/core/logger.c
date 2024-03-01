@@ -1,6 +1,7 @@
 #include "logger.h"
 #include "asserts.h"
 #include "platform/platform.h"
+#include "core/cstring.h"
 
 // TODO: Temporary
 #include <stdio.h>
@@ -8,11 +9,10 @@
 #include <stdarg.h>
 
 b8 initialize_logging() {
-    // TODO: Create log file
     return TRUE;
 }
 void shutdown_logging() {
-    // TODO: Perform any cleanups and write queued entries.
+
 }
 
 KAPI void log_output(log_level level, const char* message, ...) {
@@ -37,6 +37,7 @@ KAPI void log_output(log_level level, const char* message, ...) {
     } else {
          platform_console_write(out_message2, level);
     }
+
 }
 
 void report_assertion_failure(const char* expression, const char* message, const char* file, i32 line) {

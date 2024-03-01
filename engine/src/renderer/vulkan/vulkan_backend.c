@@ -133,7 +133,16 @@ b8 vulkan_renderer_backend_initialize(renderer_backend* backend, const char* app
 }
 
 void vulkan_renderer_backend_shutdown(renderer_backend* backend) {
-    CDEBUG("Destroying Vulkan debugger...");
+    CDEBUG("Destroying Vulkan device...");
+    vulkan_device_destroy(&context);
+
+    if (context.surface) {
+        CDEBUG("Destroying Vulkan surface...");
+        vkDestroySurfaceKHR(context.instance, context.surface, context.allocator);
+        context.surface = 0;
+    }
+
+    CDEBUG("Destroying Vulkan debugger...")
     if (context.debug_messenger) {
         PFN_vkDestroyDebugUtilsMessengerEXT func =
             (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(context.instance, "vkDestroyDebugUtilsMessengerEXT");
