@@ -22,6 +22,11 @@ typedef struct application_state {
 static b8 initialized = FALSE;
 static application_state app_state;
 
+void application_get_framebuffer_size(u32* width, u32* height) {
+    *width = app_state.width;
+    *height = app_state.height;
+}
+
 // Event Handlers
 b8 application_on_event(u16 code, void* sender, void* listener_inst, event_context context);
 b8 application_on_key(u16 code, void* sender, void* listener_inst, event_context context);
