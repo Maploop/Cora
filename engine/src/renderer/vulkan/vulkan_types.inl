@@ -139,6 +139,9 @@ typedef struct vulkan_context {
 
     b8 recreating_swapchain;
 
+    u64 framebuffer_size_generation;
+    u64 framebuffer_size_last_generation;
+
     i32 (*find_memory_index)(u32 type_filter, u32 property_flags);
 
 } vulkan_context;

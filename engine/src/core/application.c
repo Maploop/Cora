@@ -96,6 +96,8 @@ b8 application_run() {
     app_state.last_time = app_state.clock.elapsed;
     f64 running_time = 0;
     u8 frame_count = 0;
+    if (frame_count) {}
+    if (running_time) {}
     f64 target_frame_seconds = 1.0f / 60;
 
     CINFO(get_memory_usage_str());

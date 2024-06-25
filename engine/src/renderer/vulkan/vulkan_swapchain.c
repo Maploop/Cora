@@ -21,19 +21,26 @@ void vulkan_swapchain_destroy(vulkan_context* context, vulkan_swapchain* swapcha
     destroy(context, swapchain);
 }
 
-b8 vulkan_swapchina_acquire_image_next(vulkan_context* context, vulkan_swapchain* swapchain,
+b8 vulkan_swapchain_acquire_next_image_index(vulkan_context* context, vulkan_swapchain* swapchain,
     u64 timeout_ns, VkSemaphore image_available_semaphore, VkFence fence, u32* out_image_index) {
         VkResult result = vkAcquireNextImageKHR(
-            context->device.logical_device, swapchain->handle, timeout_ns, image_available_semaphore, fence, out_image_index);
-        
-        if (result == VK_ERROR_OUT_OF_DATE_KHR) {
-            vulkan_swapchain_recreate(context, context->framebuffer_width, context->framebuffer_height, swapchain);
-        } else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
-            CFATAL("Failed to acquire swapchain image!");
-            return FALSE;
-        }
+        context->device.logical_device,
+        swapchain->handle,
+        timeout_ns,
+        image_available_semaphore,
+        fence,
+        out_image_index);
 
-        return TRUE;
+    if (result == VK_ERROR_OUT_OF_DATE_KHR) {
+        // Trigger swapchain recreation, then boot out of the render loop.
+        vulkan_swapchain_recreate(context, context->framebuffer_width, context->framebuffer_height, swapchain);
+        return FALSE;
+    } else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR) {
+        CFATAL("Failed to acquire swapchain image!");
+        return FALSE;
+    }
+
+    return TRUE;
 }
 
 b8 vulkan_swapchain_present(vulkan_context* context, vulkan_swapchain* swapchain, VkQueue graphics_queue, VkQueue present_queue,
@@ -187,6 +194,7 @@ void create(vulkan_context* context, u32 width, u32 height, vulkan_swapchain* sw
 }
 
 void destroy(vulkan_context* context, vulkan_swapchain* swapchain) {
+    vkDeviceWaitIdle(context->device.logical_device);
     vulkan_image_destroy(context, &swapchain->depth_attachment);
 
     for (u32 i = 0; i < swapchain->image_count; i++) {
