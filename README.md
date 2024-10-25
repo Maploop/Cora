@@ -6,9 +6,8 @@
 | Table of Contents  |
 | ------------- | 
 | 1. [Support](#support)  | 
-| 2. [Cloning](#cloning)  | 
-| 3. [Building](#building)  | 
-| 4. [Download](#downloads)  | 
+| 2. [Building](#building)  | 
+| 3. [Download](#downloads)  | 
 
 ## Support
 ### Platform Support
@@ -21,11 +20,9 @@
 - [ ]  Direct X
 - [ ]  OpenGL
 
-## Cloning
-Go ahead and do `git clone https://github.com/Maploop/Cora.git` and then do `cd Cora` and there's your clone!
-
 ## Building
+Go ahead and do `git clone https://github.com/Maploop/Cora.git` and then do `cd Cora` and there's your clone!
 Import into Visual Studio Code and press Shift + B to build, the output file will be inside of `./bin/testbed.exe`
 
 ## Downloads
-Downloads are not available for the Gamma versions of Cora.****
+No download available as of now, you can build it for yourself tho!
