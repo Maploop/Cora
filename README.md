@@ -22,7 +22,8 @@
 
 ## Building
 Go ahead and do `git clone https://github.com/Maploop/Cora.git` and then do `cd Cora` and there's your clone!
-Import into Visual Studio Code and press Shift + B to build, the output file will be inside of `./bin/testbed.exe`
+Import into Visual Studio Code and press Shift + B to build (or run the build-all.bat file), the output file will be inside of `./bin/testbed.exe`
+
 
 ## Downloads
 No download available as of now, you can build it for yourself tho!
